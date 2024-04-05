@@ -8,7 +8,7 @@ pipeline {
         }
         stage('hello') {
             steps {
-                sh 'index.php'
+                sh 'php hello.php'
             }
         }
     }
