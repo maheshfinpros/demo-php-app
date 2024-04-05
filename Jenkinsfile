@@ -1,14 +1,14 @@
 pipeline {
     agent any
+    environment {
+        staging_server = "13.233.129.3" // Update the IP address to your server's IP
+    }
     stages {
-        stage('verify version') {
+        stage('Deploy to Remote') {
             steps {
-                sh 'php --version'
-            }
-        }
-        stage('hello') {
-            steps {
-                sh 'php hello.php'
+                script {
+                    sh "scp -r ${WORKSPACE}/ root@${staging_server}:/var/www/html/info.php/"
+                }
             }
         }
     }
